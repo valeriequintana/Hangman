@@ -1,12 +1,16 @@
 /*
  * Project 1
- * Play.java
+ * Hangman.java
+ * Team: Valerie Quintana, Aditi Pathak, Cheryl Litwinczuk, 
+ *       Claudio Sousa, Don Hwan Kim, Yan Ling
  */
 
 package hangman;
-
+// Selects a random word
 import java.util.Random;
 import java.util.Scanner;
+
+// Creates the class
 public class Play
 {
     public Play()
@@ -15,16 +19,17 @@ public class Play
     }
     public void Start(int yes)
     {
-      //String of words and hints
+      // Created two lists (hints and words) that are both arrays
       String words[] = new String[26];
       String hints[] = new String[26];
+      // There is a switch statement here in case we wanted to add in different lists of words based level of difficulty
       switch(yes)
       {
         case 1:
           
-          words[0] = "cat";
+          words[0] = "bird";
           hints[0] = "Animal";
-          words[1] = "dog";
+          words[1] = "fish";
           hints[1] = "Animal";
           words[2] = "book";
           hints[2] = "Reading";
@@ -75,7 +80,8 @@ public class Play
           words[25] = "hat";
           hints[25] = "Head.";
       }
-      //Create blanks
+      //Create blanks based on the amount of characters in this, a guess string is created 
+      // which will have the dashes for the letters the user needs to guess.
       String word;
       Random rand = new Random();
       int w1 = rand.nextInt(26);
@@ -93,8 +99,11 @@ public class Play
       boolean canPlay = true;
       Main(guess, tt, canPlay, lu, word, hint);
     }
+    // Method called "Main" which will display the man as the user progresses in the game
+    
     public void Main(String guess, int tt, boolean canPlay, String lu, String word, String hint)
     {
+    // Checks to see if the user has guessed 6 wrong letters
       if(tt==6)
       {
        canPlay = false;
@@ -127,6 +136,9 @@ public class Play
         Guess(guess, tt, canPlay, lu, word, g1, w2, man, hint);
        }
     }
+    
+   // Guess method is created and creates a string based off of the guess. If characters are both equal to each other the user wins
+   // If not, the user loses. We check if they are equal based on the for loop for each character.
     public void Guess(String guess, int tt, boolean canPlay, String lu, String word, char g1[], char w2[], String man[], String hint)
     {
         String tg1 = new String(g1);
@@ -179,6 +191,8 @@ public class Play
         }
       }
     }
+    // Whether a player wins or loses, they will be asked to play again. 
+    // If Y, restart back to the Hangman.java class. If N, program ends.
     public void Lose()
     {
       Scanner input1 = new Scanner(System.in);
